@@ -23,3 +23,9 @@ And simply switch between them so that your commit message have the right author
 Now your commit messages will have the user `John Smith` and `j.smith@gmail.com` assigned to them.
 
 **Note: this writes to the global git config.**
+
+
+### TODO
+
+- [ ] add tests
+- [ ] add CI
