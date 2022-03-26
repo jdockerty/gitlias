@@ -11,9 +11,11 @@ The simplest way to install is by using Go
     go install github.com/jdockerty/gitlias@latest
 
 ## Usage
+
+You can see the full usage and supported flags by running `gitlias --help`. Below is a short example of how the program should be utilised.
+
 ```toml
 # ${HOME}/gitlias.toml
-
 [alias]
 
   [alias.work]
