@@ -13,6 +13,18 @@ import (
 const scope = config.GlobalScope
 const configName = "gitlias.toml"
 
+func List(configPath string) {
+	userConfig, err := Get(configPath)
+	if err != nil {
+		fmt.Printf("Unable to find configuration file: %s\n", err)
+		os.Exit(1)
+	}
+	fmt.Println("Your aliases are:")
+	for key, _ := range userConfig.Alias {
+		fmt.Printf("\t%s\n", key)
+	}
+}
+
 func Run(configPath string) {
 	gitConfig, err := config.LoadConfig(scope)
 	if err != nil {
