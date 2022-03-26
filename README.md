@@ -2,9 +2,11 @@
 
 Swap between `git` aliases so that you can `git commit` as the right author.
 
-Set a number of aliases in a `gitlias.toml` file. For example, you might switch between a `work` and `personal` alias when committing to your own projects on a lunch break. This saves you the hassle of using the `git config --set [--global]` lines and provides a more name to refer to them.
-
-*If you're like me, this will stop you from committing to personal projects with your work email* 😉
+Set a number of aliases in a `gitlias.toml` file. For example, you might switch between a `work` and `personal` alias when committing to your own projects on a lunch break. This saves you the hassle of using 
+  
+  `git config --set [--global]`
+  
+or other such lines and provides a more familiar name to refer to them by.
 
 ## Install
 
