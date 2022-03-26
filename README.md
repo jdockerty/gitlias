@@ -1,6 +1,6 @@
 # Gitlias
 
-Swap between *aliases* so that you can `git commit` as the right author.
+Swap between `git` aliases so that you can `git commit` as the right author.
 
 Set a number of aliases in a `gitlias.toml` file. For example, you might switch between a `work` and `personal` alias when committing to your own projects on a lunch break.
 
