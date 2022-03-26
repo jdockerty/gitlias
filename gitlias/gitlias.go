@@ -1,4 +1,4 @@
-package main
+package gitlias
 
 import (
 	"errors"
@@ -11,20 +11,35 @@ import (
 )
 
 const scope = config.GlobalScope
+const configName = "gitlias.toml"
 
-var configPath string
+func Run(configPath string) {
+	gitConfig, err := config.LoadConfig(scope)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
-func init() {
-	defaultConf := func() string {
-		h, err := os.UserHomeDir()
-		if err != nil {
-			log.Fatalf("Unable to get user home directory: %s\n", err)
+	userConfig, err := Get(configPath)
+	if err != nil {
+		fmt.Printf("Unable to find configuration file: %s\n", err)
+		os.Exit(1)
+	}
+
+	alias := func() string {
+		a := flag.Args()
+		if len(a) == 0 {
+			fmt.Println("You must provide an alias to switch to")
+			os.Exit(1)
 		}
-		return fmt.Sprintf("%s/gitlias.toml", h)
+		return a[0]
 	}()
 
-	flag.StringVar(&configPath, "config", defaultConf, "Configuration TOML file path")
-	flag.Parse()
+	err = switchAlias(alias, gitConfig, userConfig)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }
 
 func switchAlias(alias string, gitConf *config.Config, userConf *Gitlias) error {
@@ -66,35 +81,4 @@ func switchAlias(alias string, gitConf *config.Config, userConf *Gitlias) error 
 
 	fmt.Printf("Switched to alias: %s\n", alias)
 	return nil
-}
-
-func main() {
-	gitConfig, err := config.LoadConfig(scope)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-
-	userConfig, err := Get(configPath)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Println(gitConfig)
-	fmt.Printf("%+v\n", userConfig)
-
-	alias := func() string {
-		a := flag.Args()
-		if len(a) == 0 {
-			fmt.Println("You must provide an alias to switch to")
-			os.Exit(1)
-		}
-		return a[0]
-	}()
-
-	err = switchAlias(alias, gitConfig, userConfig)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
 }
