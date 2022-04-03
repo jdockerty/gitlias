@@ -41,7 +41,10 @@ func init() {
 func main() {
 
 	if listAliases {
-		gitlias.List(configPath)
+		aliases := gitlias.List(configPath)
+		for _, alias := range aliases {
+			fmt.Println(alias)
+		}
 		return
 	}
 
