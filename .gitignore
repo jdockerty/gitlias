@@ -22,3 +22,4 @@ go.work
 
 # Local toml for testing purposes
 gitlias.toml
+dist/
