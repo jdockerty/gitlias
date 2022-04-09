@@ -2,9 +2,9 @@ name: Go
 
 on:
   push:
-    branches: [ feat/* ]
+    branches: [ fix/* ]
   pull_request:
-    branches: [ feat/* ]
+    branches: [ fix/* ]
 
 jobs:
 
