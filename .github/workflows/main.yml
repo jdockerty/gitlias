@@ -1,7 +1,8 @@
 name: Go
 
+
 on:
-  push:
+  push: # Run tests on every branch
     branches:
   pull_request:
     branches:
