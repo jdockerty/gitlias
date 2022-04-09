@@ -1,17 +1,16 @@
 name: goreleaser
 
-on:
-  pull_request:
-    branches:
-      - main
+on: # Only run the release on the main branch with a tag of v*, e.g. v0.1
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
+
 permissions:
   contents: write
 
 jobs:
   goreleaser:
+    if: github.event.base_ref=='refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       -
@@ -24,7 +23,7 @@ jobs:
         run: git fetch --force --tags
       -
         name: Set up Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: 1.18
       -
