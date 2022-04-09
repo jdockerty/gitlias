@@ -2,10 +2,10 @@
 
 Swap between `git` aliases so that you can `git commit` as the right author.
 
-Set a number of aliases in a `gitlias.toml` file. For example, you might switch between a `work` and `personal` alias when committing to your own projects on a lunch break. This saves you the hassle of using 
-  
+Set a number of aliases in a `gitlias.toml` file. For example, you might switch between a `work` and `personal` alias when committing to your own projects on a lunch break. This saves you the hassle of using
+
   `git config --set [--global]`
-  
+
 or other such lines and provides a more familiar name to refer to them by.
 
 ## Install
@@ -13,6 +13,8 @@ or other such lines and provides a more familiar name to refer to them by.
 The simplest way to install is by using Go
 
     go install github.com/jdockerty/gitlias@latest
+
+Alternatively, you can use the provided [releases](https://github.com/jdockerty/gitlias/releases) to download a tarball or zip file.
 
 ## Usage
 
@@ -43,7 +45,3 @@ Now your commit messages will have the user `John Smith` and email `j.smith@gmai
 **Note: this currently writes to the global git config.**
 
 
-## TODO
-
-- [ ] add tests
-- [ ] add CI
