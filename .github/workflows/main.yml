@@ -2,9 +2,9 @@ name: Go
 
 on:
   push:
-    branches: [ fix/* ]
+    branches: 
   pull_request:
-    branches: [ fix/* ]
+    branches:
 
 jobs:
 
@@ -25,8 +25,3 @@ jobs:
       - name: Test
         run: go test -race -v ./...
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Build
-      run: go build -v ./...
