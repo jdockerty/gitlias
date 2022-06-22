@@ -23,6 +23,7 @@ const configName = "gitlias.toml"
 
 var configPath string
 var listAliases bool
+var generateTemplate bool
 
 func init() {
 	defaultConf := func() string {
@@ -35,6 +36,7 @@ func init() {
 
 	flag.StringVar(&configPath, "config", defaultConf, "Configuration TOML file path")
 	flag.BoolVar(&listAliases, "list", false, "List current alias names in your configuration file")
+	flag.BoolVar(&generateTemplate, "generate", false, "Generate a simple configuration file")
 	flag.Parse()
 }
 
@@ -45,6 +47,12 @@ func main() {
 		for _, alias := range aliases {
 			fmt.Println(alias)
 		}
+		return
+	}
+
+	if generateTemplate {
+		output := gitlias.Generate()
+		fmt.Printf("%s", output)
 		return
 	}
 
