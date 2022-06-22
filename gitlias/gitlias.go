@@ -13,6 +13,22 @@ import (
 const scope = config.GlobalScope
 const configName = "gitlias.toml"
 
+const generateTemplate = `
+[alias]
+
+    [alias.personal]
+    user = ""
+    email = ""
+
+    [alias.work]
+    user = ""
+    email = ""
+`
+
+func Generate() string {
+	return generateTemplate
+}
+
 func List(configPath string) []string {
 	userConfig, err := Get(configPath)
 	if err != nil {
