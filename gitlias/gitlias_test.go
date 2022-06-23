@@ -41,7 +41,7 @@ func (a *Actions) SetupTest() {
 
 // TestList will ensure that our configured aliases are returned as expected.
 func (a *Actions) TestList() {
-	aliases := List(a.configFile.Name())
+	aliases, _ := List(a.configFile.Name())
 
 	assert.ElementsMatch(a.T(), aliases, []string{"test1", "test2"})
 }

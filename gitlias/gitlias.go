@@ -11,7 +11,6 @@ import (
 )
 
 const scope = config.GlobalScope
-const configName = "gitlias.toml"
 
 const generateTemplate = `
 [alias]
@@ -29,18 +28,19 @@ func Generate() string {
 	return generateTemplate
 }
 
-func List(configPath string) []string {
+func List(configPath string) ([]string, string) {
 	userConfig, err := Get(configPath)
 	if err != nil {
 		fmt.Printf("Unable to find configuration file: %s\n", err)
 		os.Exit(1)
 	}
+
 	var aliases []string
 	for key, _ := range userConfig.Alias {
 		aliases = append(aliases, key)
 	}
 
-	return aliases
+	return aliases, userConfig.Current
 }
 
 func Run(configPath string) {
@@ -65,14 +65,14 @@ func Run(configPath string) {
 		return a[0]
 	}()
 
-	err = switchAlias(alias, gitConfig, userConfig)
+	err = switchAlias(configPath, alias, gitConfig, userConfig)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 }
 
-func switchAlias(alias string, gitConf *config.Config, userConf *Gitlias) error {
+func switchAlias(confPath string, alias string, gitConf *config.Config, userConf *Gitlias) error {
 
 	if _, ok := userConf.Alias[alias]; !ok {
 		fmt.Println("Invalid key provided, valid keys are:")
@@ -107,6 +107,11 @@ func switchAlias(alias string, gitConf *config.Config, userConf *Gitlias) error 
 		if err != nil {
 			return err
 		}
+	}
+	userConf.Current = alias
+	err = userConf.WriteConfig(confPath)
+	if err != nil {
+		return err
 	}
 
 	fmt.Printf("Switched to alias: %s\n", alias)
