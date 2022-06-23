@@ -7,22 +7,37 @@ import (
 )
 
 type Gitlias struct {
-	Alias map[string]Alias
+	Alias   map[string]Alias `toml:"alias"`
+	Current string           `toml:"current"`
+}
+
+func (g *Gitlias) WriteConfig(filePath string) error {
+
+	f, err := os.OpenFile(filePath, os.O_WRONLY|os.O_TRUNC, 0644)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	enc := toml.NewEncoder(f)
+
+	err = enc.Encode(&g)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 type Alias struct {
-	User  string `mapstructure:"user"`
-	Email string `mapstructure:"email"`
+	User  string `toml:"user"`
+	Email string `toml:"email"`
 }
 
 func Get(filePath string) (*Gitlias, error) {
 	var c *Gitlias
 
-	data, err := os.ReadFile(filePath)
-	if err != nil {
-		return nil, err
-	}
-	_, err = toml.Decode(string(data), &c)
+	_, err := toml.DecodeFile(filePath, &c)
 	if err != nil {
 		return nil, err
 	}
