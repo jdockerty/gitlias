@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/jdockerty/gitlias/gitlias"
 )
@@ -43,10 +44,9 @@ func init() {
 func main() {
 
 	if listAliases {
-		aliases := gitlias.List(configPath)
-		for _, alias := range aliases {
-			fmt.Println(alias)
-		}
+		aliases, current := gitlias.List(configPath)
+		s := strings.Join(aliases, "\n")
+		fmt.Printf("%s\n\ncurrent: %s\n", s, current)
 		return
 	}
 
