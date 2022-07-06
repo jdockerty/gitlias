@@ -46,6 +46,20 @@ func (a *Actions) TestList() {
 	assert.ElementsMatch(a.T(), aliases, []string{"test1", "test2"})
 }
 
+func (a *Actions) TestAdd() {
+	assert := assert.New(a.T())
+
+	aliasName := "testAddAlias"
+	user := "testAddUser"
+	email := "testAddEmail"
+	withNewAlias, _ := Add(a.configFile.Name(), aliasName, user, email)
+
+	_, ok := withNewAlias.Alias[aliasName]
+	assert.Truef(ok, "%s should exist in the Alias map", aliasName)
+	assert.Equal(withNewAlias.Alias[aliasName].User, user)
+	assert.Equal(withNewAlias.Alias[aliasName].Email, email)
+}
+
 func TestActionsSuite(t *testing.T) {
 	suite.Run(t, new(Actions))
 }
