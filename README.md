@@ -1,5 +1,9 @@
 # Gitlias
 
+![GitHub branch checks state](https://img.shields.io/github/checks-status/jdockerty/gitlias/main?style=plastic)
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/jdockerty/gitlias?style=plastic)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/jdockerty/gitlias?style=plastic)
+
 Swap between `git` aliases so that you can `git commit` as the right author.
 
 Set a number of aliases in a `gitlias.toml` file. For example, you might switch between a `work` and `personal` alias when committing to your own projects on a lunch break. This saves you the hassle of using
