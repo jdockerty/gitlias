@@ -12,7 +12,7 @@ or other such lines and provides a more familiar name to refer to them by.
 
 The simplest way to install is by using Go
 
-    go install github.com/jdockerty/gitlias@latest
+    go install github.com/jdockerty/gitlias@v0.1.0
 
 Alternatively, you can use the provided [releases](https://github.com/jdockerty/gitlias/releases) to download a tarball or zip file.
 
