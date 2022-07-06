@@ -42,22 +42,15 @@ func List(configPath string) ([]string, string) {
 	return aliases, userConfig.Current
 }
 
-func Add(configPath, alias, user, email string) error {
+// Add is a wrapper for writing a new alias into the configuration file.
+func Add(configPath, alias, user, email string) (*Gitlias, error) {
 	userConfig, err := Get(configPath)
 	if err != nil {
-		fmt.Printf("Unable to find configuration file: %s\n", err)
-		os.Exit(1)
+		return nil, err
 	}
-
-	fmt.Printf("Before: %+v\n", userConfig.Alias)
-
 	userConfig.Alias[alias] = Alias{User: user, Email: email}
 
-	fmt.Printf("After: %+v\n", userConfig.Alias)
-
-	userConfig.WriteConfig(configPath)
-
-	return nil
+	return userConfig, nil
 }
 
 func switchAlias(confPath string, alias string, gitConf *config.Config, userConf *Gitlias) error {

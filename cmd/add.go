@@ -1,6 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Coryright © 2022 Jack Dockerty jdockerty19@gmail.com
 */
 package cmd
 
@@ -23,12 +22,18 @@ var addCmd = &cobra.Command{
 	Short: "Add a new alias",
 	Long:  `Add a new alias your gitlias configuration file.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("add called")
-		err := gitlias.Add(configPath, addAlias, addUser, addEmail)
+		aliases, err := gitlias.Add(configPath, addAlias, addUser, addEmail)
 		if err != nil {
-			fmt.Printf("Unable to add configuration: %s\n", err)
+			fmt.Printf("Unable to add alias: %s\n", err)
 			return
 		}
+
+		err = aliases.WriteConfig(configPath)
+		if err != nil {
+			fmt.Printf("Unable to write additional alias to configuraion: %s\n", err)
+			return
+		}
+
 	},
 }
 

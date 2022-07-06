@@ -1,3 +1,6 @@
+/*
+Coryright © 2022 Jack Dockerty jdockerty19@gmail.com
+*/
 package cmd
 
 import (

@@ -1,6 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Coryright © 2022 Jack Dockerty jdockerty19@gmail.com
 */
 package cmd
 
