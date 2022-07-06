@@ -29,6 +29,10 @@ func (g *Gitlias) WriteConfig(filePath string) error {
 	return nil
 }
 
+func (g *Gitlias) Add(alias, user, email string) {
+	g.Alias[alias] = Alias{User: user, Email: email}
+}
+
 type Alias struct {
 	User  string `toml:"user"`
 	Email string `toml:"email"`
