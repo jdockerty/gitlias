@@ -16,13 +16,20 @@ or other such lines and provides a more familiar name to refer to them by.
 
 The simplest way to install is by using Go
 
-    go install github.com/jdockerty/gitlias@v0.1.0
+    go install github.com/jdockerty/gitlias@v0.2.0
 
 Alternatively, you can use the provided [releases](https://github.com/jdockerty/gitlias/releases) to download a tarball or zip file.
 
 ## Usage
 
 You can see the full usage and supported flags by running `gitlias --help`. Below is a short example of how the program should be utilised.
+
+Using `gitlias init` you can generate a skeleton configuration file which is written to `${HOME}/gitlias.toml`.
+
+You can add various aliases using `gitlias add --alias <alias> --user <user> --email <email_address>`, this will populate your configuration file.
+
+
+Once you have added some aliases, your file may look like this.
 
 ```toml
 # ${HOME}/gitlias.toml
@@ -40,12 +47,15 @@ You can see the full usage and supported flags by running `gitlias --help`. Belo
 Switching between them so that your commit messages have the corresponding author
 
 ```bash
-gitlias work
-gitlias personal # current active alias
+gitlias switch work
+gitlias switch personal # current active alias
 ```
 
 Now your commit messages will have the user `John Smith` and email `j.smith@gmail.com` assigned to them.
 
 **Note: this currently writes to the global git config.**
+
+
+You can view all configured aliases and the current one using `gitlias --list`
 
 
