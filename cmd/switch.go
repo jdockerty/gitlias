@@ -54,11 +54,12 @@ to quickly create a Cobra application.`,
 	},
 }
 
+// switchAlias switches aliases by writing to the global git configuration.
 func switchAlias(confPath string, alias string, gitConf *config.Config, userConf *gitlias.Gitlias) error {
 
 	if _, ok := userConf.Alias[alias]; !ok {
 		fmt.Println("Invalid key provided, valid keys are:")
-		for key, _ := range userConf.Alias {
+		for key := range userConf.Alias {
 			fmt.Printf("\t%s\n", key)
 		}
 		return errors.New("the alias you want to switch to must exist")
@@ -80,9 +81,7 @@ func switchAlias(confPath string, alias string, gitConf *config.Config, userConf
 
 	for _, p := range paths {
 
-		// with debug: log.Printf("Writing to path: %s\n", p)
 		if _, err = os.Stat(p); errors.Is(err, os.ErrNotExist) {
-			// with debug: fmt.Printf("Skip writing to %s as it does not exist\n", p)
 			continue
 		}
 		err = os.WriteFile(p, data, os.ModeAppend)
