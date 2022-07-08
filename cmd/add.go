@@ -20,7 +20,12 @@ var (
 var addCmd = &cobra.Command{
 	Use:   "add",
 	Short: "Add a new alias",
-	Long:  `Add a new alias your gitlias configuration file.`,
+	Long: `Add a new alias your gitlias configuration file.
+
+All flags must be specified with this command, for example:
+
+        gitlias add --alias personal --user "John Smith" --email "john@example.com"
+`,
 	Run: func(cmd *cobra.Command, args []string) {
 		aliases, err := gitlias.Add(configPath, addAlias, addUser, addEmail)
 		if err != nil {
