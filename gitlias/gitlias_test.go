@@ -60,6 +60,17 @@ func (a *Actions) TestAdd() {
 	assert.Equal(withNewAlias.Alias[aliasName].Email, email)
 }
 
+func (a *Actions) TestRemove() {
+	assert := assert.New(a.T())
+
+	aliasToRemove := "test1"
+
+	al, _ := Remove(a.configFile.Name(), aliasToRemove)
+
+	_, ok := al.Alias[aliasToRemove]
+	assert.Falsef(ok, "%s should be false, the element was removed, but got %s", aliasToRemove, ok)
+}
+
 func TestActionsSuite(t *testing.T) {
 	suite.Run(t, new(Actions))
 }
