@@ -28,6 +28,20 @@ func Init() string {
 	return generateTemplate
 }
 
+// Remove is used to remove an element from the alias mapping by specifying the alias name.
+func Remove(configPath, alias string) (*Gitlias, error) {
+	userConfig, err := Get(configPath)
+	if err != nil {
+		return nil, err
+	}
+
+	// Go's builtin for removing an element from a map.
+	// This is a no-op when the key doesn't exist, so there is no need to check for existence.
+	delete(userConfig.Alias, alias)
+
+	return userConfig, nil
+}
+
 // List is used to list all aliases.
 func List(configPath string) ([]string, string) {
 	userConfig, err := Get(configPath)
