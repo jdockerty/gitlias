@@ -40,9 +40,9 @@ var addCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(addCmd)
 
-	addCmd.Flags().StringVar(&addUser, "user", "", "The username to make commits as, e.g. 'John Smith'")
-	addCmd.Flags().StringVar(&addEmail, "email", "", "The email to make commits as, e.g. 'john.smith@example.com'")
-	addCmd.Flags().StringVar(&addAlias, "alias", "", "A meaningful alias to give to this commit author")
+	addCmd.Flags().StringVar(&addUser, "user", "", "the username to make commits as, e.g. 'John Smith'")
+	addCmd.Flags().StringVar(&addEmail, "email", "", "the email to make commits as, e.g. 'john.smith@example.com'")
+	addCmd.Flags().StringVar(&addAlias, "alias", "", "meaningful alias to give to this commit author")
 
 	// Flags are required, this makes it far easier to parse the given values.
 	addCmd.MarkFlagRequired("user")
