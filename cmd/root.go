@@ -60,6 +60,6 @@ func init() {
 		return fmt.Sprintf("%s/%s", h, configName)
 	}()
 
-	rootCmd.PersistentFlags().StringVar(&configPath, "config", defaultConf, "Configuration file path")
-	rootCmd.Flags().BoolVar(&listAliases, "list", false, "List current aliases")
+	rootCmd.PersistentFlags().StringVar(&configPath, "config", defaultConf, "configuration file path")
+	rootCmd.Flags().BoolVar(&listAliases, "list", false, "list current aliases")
 }
