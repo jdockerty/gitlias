@@ -1,6 +1,5 @@
 # Gitlias
 
-![GitHub branch checks state](https://img.shields.io/github/checks-status/jdockerty/gitlias/main?style=plastic)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/jdockerty/gitlias?style=plastic)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/jdockerty/gitlias?style=plastic)
 
@@ -56,7 +55,7 @@ Now your commit messages will have the user `John Smith` and email `j.smith@gmai
 **Note: this currently writes to the global git config.**
 
 
-You can view all configured aliases and the current one using `gitlias --list`
+You can view all configured aliases using `gitlias list` and the current one with `gitlias list --current`.
 
 If you no longer wish to use an alias, you can remove is using `gitlias rm <alias_name>`.
 
