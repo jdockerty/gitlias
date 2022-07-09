@@ -7,9 +7,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strings"
 
-	"github.com/jdockerty/gitlias/gitlias"
 	"github.com/spf13/cobra"
 )
 
@@ -24,22 +22,9 @@ var rootCmd = &cobra.Command{
 	Use:   "gitlias",
 	Short: "Swap between your configured git aliases",
 	Long: `gitlias
+
 Swap between your configured git aliases, ensuring that you commit as the correct user.
 `,
-	Run: func(cmd *cobra.Command, args []string) {
-		listAlias, err := cmd.Flags().GetBool("list")
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-
-		if listAlias {
-			aliases, current := gitlias.List(configPath)
-			s := strings.Join(aliases, "\n")
-			fmt.Printf("%s\n\ncurrent: %s\n", s, current)
-			return
-		}
-	},
 }
 
 // Execute adds child commands to the root command and sets flags appropriately.
