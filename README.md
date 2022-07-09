@@ -16,7 +16,7 @@ or other such lines and provides a more familiar name to refer to them by.
 
 The simplest way to install is by using Go
 
-    go install github.com/jdockerty/gitlias@v0.2.0
+    go install github.com/jdockerty/gitlias@v0.2.1
 
 Alternatively, you can use the provided [releases](https://github.com/jdockerty/gitlias/releases) to download a tarball or zip file.
 
@@ -58,4 +58,5 @@ Now your commit messages will have the user `John Smith` and email `j.smith@gmai
 
 You can view all configured aliases and the current one using `gitlias --list`
 
+If you no longer wish to use an alias, you can remove is using `gitlias rm <alias_name>`.
 
